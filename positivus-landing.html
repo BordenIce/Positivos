@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Positivus — Navigating the digital landscape for success</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#191a23;
+  --green:#b9ff66;
+  --gray:#f3f3f1;
+  --muted:#55565b;
+  --radius:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.container{max-width:1240px;margin:0 auto;padding:0 24px}
+img,svg{display:block}
+
+/* ---------- shared bits ---------- */
+.eyebrow{display:inline-block;background:var(--green);font-size:32px;font-weight:600;padding:6px 18px;border-radius:8px;margin-bottom:0}
+.section-head{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:48px}
+.section-head p{max-width:420px;font-size:16px;color:var(--ink);padding-top:10px}
+section{padding:70px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:#fff;border:0;border-radius:14px;padding:16px 28px;font-size:16px;font-weight:500;transition:opacity .2s}
+.btn:hover{opacity:.85}
+.btn-outline{background:transparent;color:var(--ink);border:1px solid var(--ink);border-radius:14px;padding:14px 26px;font-size:16px}
+.btn-outline:hover{background:var(--ink);color:#fff}
+.pill-link{display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:15px}
+.arrow-badge{width:28px;height:28px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;flex:none}
+.arrow-badge svg{width:13px;height:13px}
+.green-text{color:#9ee84a}
+
+/* ---------- header ---------- */
+header{padding:28px 0}
+header .container{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:700}
+.logo svg{width:26px;height:26px}
+nav.main{display:flex;align-items:center;gap:34px}
+nav.main a{font-size:16px}
+nav.main a:hover{opacity:.6}
+
+/* ---------- hero ---------- */
+.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding-top:30px}
+.hero h1{font-size:56px;line-height:1.08;font-weight:500;max-width:560px}
+.hero p.lead{margin:24px 0 32px;max-width:480px;font-size:16px;color:var(--ink)}
+.hero-art{position:relative;display:flex;align-items:center;justify-content:center;min-height:320px}
+.logos{display:flex;flex-wrap:wrap;align-items:center;gap:40px;margin-top:70px;opacity:.75}
+.logos span{font-size:24px;font-weight:700;color:#3a3b40;font-family:Arial,sans-serif}
+
+/* ---------- services ---------- */
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.svc-card{border:2px solid var(--ink);border-radius:var(--radius);padding:32px;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.svc-card.light{background:var(--gray)}
+.svc-card.green{background:var(--green)}
+.svc-card.dark{background:var(--ink);color:#fff}
+.svc-title{font-size:26px;font-weight:600;line-height:1.3}
+.svc-title mark{background:#fff;color:var(--ink);padding:2px 8px;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.svc-card.green .svc-title mark{background:#fff}
+.svc-icon{position:absolute;right:24px;top:28px;width:150px;height:110px;opacity:.95}
+.svc-card.dark .svc-icon{opacity:.9}
+
+/* ---------- cta ---------- */
+.cta{background:var(--gray);border-radius:var(--radius);padding:56px 48px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;position:relative;overflow:hidden}
+.cta h2{font-size:30px;font-weight:600;max-width:380px}
+.cta p{margin-top:10px;color:var(--muted);max-width:380px;font-size:15px}
+.cta-deco{width:150px;height:150px;flex:none}
+
+/* ---------- case studies ---------- */
+.case-panel{background:var(--ink);color:#fff;border-radius:var(--radius);display:grid;grid-template-columns:repeat(3,1fr);padding:48px}
+.case-col{padding:0 32px;border-left:1px solid rgba(255,255,255,.25)}
+.case-col:first-child{border-left:0;padding-left:0}
+.case-col p{font-size:15px;line-height:1.6;margin-bottom:20px}
+.case-col a{color:var(--green);display:inline-flex;align-items:center;gap:6px;font-weight:500;font-size:15px}
+
+/* ---------- process accordion ---------- */
+.acc-item{border-radius:var(--radius);padding:28px 32px;margin-bottom:20px;background:var(--gray);transition:background .2s}
+.acc-item.open{background:var(--green)}
+.acc-head{display:flex;align-items:center;gap:24px;cursor:pointer}
+.acc-num{font-size:40px;font-weight:700;width:70px;flex:none}
+.acc-title{flex:1;font-size:22px;font-weight:600}
+.acc-toggle{width:36px;height:36px;border-radius:50%;border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;flex:none;background:#fff}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease, padding-top .3s ease}
+.acc-body p{font-size:15px;color:var(--ink);line-height:1.6;padding-top:20px;border-top:1px solid rgba(25,26,35,.2);margin-top:20px}
+.acc-item.open .acc-body{max-height:160px}
+.acc-divider{display:none}
+
+/* ---------- team ---------- */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.team-card{border:1px solid #e3e3e1;border-radius:var(--radius);padding:24px;position:relative}
+.team-top{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.avatar-wrap{position:relative;width:70px;height:70px;flex:none}
+.avatar-petal{position:absolute;inset:0}
+.avatar-letter{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--ink)}
+.team-name{font-size:17px;font-weight:600}
+.team-role{font-size:14px;color:var(--muted)}
+.li-badge{position:absolute;right:20px;top:20px;width:30px;height:30px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.team-bio{font-size:14px;color:var(--ink);line-height:1.6;border-top:1px solid #e3e3e1;padding-top:16px}
+.team-foot{display:flex;justify-content:flex-end;margin-top:30px}
+
+/* ---------- testimonials ---------- */
+.testi-wrap{background:var(--ink);border-radius:var(--radius);padding:60px 0;overflow:hidden;position:relative}
+.testi-track{display:flex;gap:28px;transition:transform .45s ease;padding:0 10%}
+.testi-card{flex:0 0 55%;background:transparent;border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:28px 30px;color:#fff;position:relative;min-height:190px;opacity:.4;transition:opacity .3s}
+.testi-card.active{opacity:1}
+.testi-card:before{content:'';position:absolute;left:28px;bottom:-14px;width:22px;height:22px;background:var(--ink);border-left:1px solid rgba(255,255,255,.35);border-bottom:1px solid rgba(255,255,255,.35);transform:rotate(-45deg)}
+.testi-card p{font-size:15px;line-height:1.7;margin-bottom:26px}
+.testi-name{color:var(--green);font-weight:600;font-size:15px}
+.testi-role{font-size:13px;color:#cfd0d4;margin-top:2px}
+.testi-controls{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:40px}
+.testi-arrow{width:40px;height:40px;border-radius:50%;border:1px solid #fff;display:flex;align-items:center;justify-content:center;background:transparent;color:#fff}
+.testi-arrow svg{width:16px;height:16px}
+.testi-dots{display:flex;gap:8px}
+.testi-dots span{width:8px;height:8px;border-radius:50%;background:#55565b}
+.testi-dots span.active{background:var(--green)}
+
+/* ---------- contact ---------- */
+.contact-panel{background:var(--gray);border-radius:var(--radius);padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.radio-row{display:flex;gap:28px;margin-bottom:24px}
+.radio-row label{display:flex;align-items:center;gap:8px;font-size:15px;cursor:pointer}
+.radio-row input{accent-color:var(--ink);width:16px;height:16px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:14px;margin-bottom:6px}
+.field input,.field textarea{width:100%;border:1px solid #c9c9c6;border-radius:10px;padding:14px 16px;font-family:inherit;font-size:15px;background:#fff}
+.field textarea{min-height:120px;resize:vertical}
+.contact-deco{display:flex;align-items:center;justify-content:center;height:100%}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#fff;border-radius:var(--radius);padding:48px;margin:0 24px 24px}
+footer .top-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding-bottom:36px}
+footer .logo{color:#fff}
+footer nav{display:flex;gap:28px;flex-wrap:wrap}
+footer nav a{font-size:15px;text-decoration:underline;text-underline-offset:4px}
+.soc{display:flex;gap:12px}
+.soc a{width:34px;height:34px;border-radius:50%;background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center}
+.soc svg{width:16px;height:16px}
+.foot-mid{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding:30px 0;border-top:1px solid rgba(255,255,255,.15)}
+.contact-tag{display:inline-block;background:var(--green);color:var(--ink);padding:4px 14px;border-radius:6px;font-weight:600;font-size:15px;margin-bottom:16px}
+.foot-mid p{font-size:15px;margin-bottom:10px;color:#e7e7e7}
+.newsletter{background:#24252f;border-radius:16px;padding:20px;display:flex;gap:12px;align-items:center}
+.newsletter input{flex:1;background:transparent;border:1px solid rgba(255,255,255,.4);border-radius:10px;padding:14px 16px;color:#fff;font-family:inherit}
+.newsletter input::placeholder{color:#9b9ca3}
+.newsletter button{background:var(--green);border:0;border-radius:10px;padding:14px 22px;font-weight:600;white-space:nowrap}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);font-size:14px;color:#d8d8da}
+.foot-bottom a{text-decoration:underline}
+
+@media(max-width:900px){
+  .hero .container{grid-template-columns:1fr}
+  .hero-art{order:-1}
+  .svc-grid{grid-template-columns:1fr}
+  .case-panel{grid-template-columns:1fr;gap:30px}
+  .case-col{border-left:0;border-top:1px solid rgba(255,255,255,.25);padding:30px 0 0}
+  .case-col:first-child{border-top:0;padding-top:0}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .contact-panel{grid-template-columns:1fr}
+  .contact-deco{display:none}
+  .foot-mid{grid-template-columns:1fr}
+  nav.main{display:none}
+  .testi-card{flex:0 0 85%}
+  .testi-track{padding:0 5%}
+}
+@media(max-width:600px){
+  .hero h1{font-size:38px}
+  .team-grid{grid-template-columns:1fr}
+  .eyebrow{font-size:24px}
+  footer{margin:0 12px 12px;padding:32px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="container">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 L15 9 L22 12 L15 15 L12 22 L9 15 L2 12 L9 9 Z" fill="#191A23"/></svg>
+      Positivus
+    </div>
+    <nav class="main">
+      <a href="#">About us</a>
+      <a href="#services">Services</a>
+      <a href="#cases">Use Cases</a>
+      <a href="#">Pricing</a>
+      <a href="#">Blog</a>
+    </nav>
+    <a href="#contact" class="btn-outline">Request a quote</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container">
+    <div>
+      <h1>Navigating the digital landscape for success</h1>
+      <p class="lead">Our digital marketing agency helps businesses grow and succeed online through a range of services including SEO, PPC, social media marketing, and content creation.</p>
+      <a href="#contact" class="btn">Book a consultation</a>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 420 340" width="100%" style="max-width:420px">
+        <circle cx="30" cy="40" r="16" fill="#191A23"/>
+        <circle cx="70" cy="75" r="7" fill="#B9FF66"/>
+        <path d="M30 230 L45 205 L70 220 L55 245 Z" fill="#191A23"/>
+        <circle cx="330" cy="290" r="7" fill="#B9FF66"/>
+        <ellipse cx="220" cy="160" rx="150" ry="95" fill="none" stroke="#191A23" stroke-width="1.2" transform="rotate(-18 220 160)"/>
+        <ellipse cx="220" cy="160" rx="150" ry="70" fill="none" stroke="#191A23" stroke-width="1.2" transform="rotate(-18 220 160)"/>
+        <g transform="translate(150,70) rotate(18)">
+          <path d="M40 60 L120 20 L170 20 L170 110 L120 110 Z" fill="none" stroke="#191A23" stroke-width="2.2" stroke-linejoin="round"/>
+          <rect x="60" y="50" width="45" height="40" fill="#B9FF66"/>
+          <rect x="18" y="55" width="25" height="30" rx="4" fill="#191A23"/>
+          <circle cx="145" cy="65" r="22" fill="#B9FF66" stroke="#191A23" stroke-width="2"/>
+        </g>
+        <circle cx="365" cy="90" r="26" fill="#191A23"/>
+        <path d="M358 90 l5 6 10-13" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="370" cy="150" r="26" fill="#B9FF66"/>
+        <circle cx="370" cy="150" r="4" fill="#191A23"/>
+        <circle cx="358" cy="146" r="2.3" fill="#191A23"/>
+        <circle cx="382" cy="146" r="2.3" fill="#191A23"/>
+        <path d="M360 158c4 4 16 4 20 0" stroke="#191A23" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="365" cy="215" r="26" fill="#191A23"/>
+        <path d="M358 215 l14 0 M365 208 l0 14" stroke="#fff" stroke-width="0"/>
+        <path d="M358 215h14M365 209v12" stroke="#fff" stroke-width="2.3" stroke-linecap="round" transform="rotate(90 365 215)"/>
+        <path d="M358 212l14 6-14 6z" fill="#fff"/>
+        <circle cx="355" cy="265" r="26" fill="#B9FF66"/>
+        <path d="M345 265a10 10 0 1 1 20 0c0 7-10 12-10 18 0-6-10-11-10-18Z" fill="#191A23"/>
+      </svg>
+    </div>
+  </div>
+  <div class="container logos">
+    <span style="font-family:Arial, sans-serif;">amazon</span>
+    <span style="font-family:'Brush Script MT', cursive;font-weight:400;">dribbble</span>
+    <span>HubSp<span style="color:#ff7a59">●</span>t</span>
+    <span>Ⓝ Notion</span>
+    <span>NETFLIX</span>
+    <span>zoom</span>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Services</span>
+      <p>At our digital marketing agency, we offer a range of services to help businesses grow and succeed online. These services include:</p>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc-card light">
+        <div class="svc-title"><mark>Search engine<br>optimization</mark></div>
+        <svg class="svc-icon" viewBox="0 0 150 110" fill="none" stroke="#191A23" stroke-width="1.5">
+          <circle cx="55" cy="55" r="22"/><line x1="71" y1="71" x2="90" y2="90"/>
+          <circle cx="120" cy="90" r="14"/><path d="M114 86a4 3 0 1 1 8 4" stroke-width="2"/>
+          <path d="M30 20l4 4M38 20l-4 4M95 30l5 0M97 27v6" stroke-width="2"/>
+        </svg>
+        <a href="#" class="pill-link"><span class="arrow-badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M6 18L18 6M9 6h9v9"/></svg></span>Learn more</a>
+      </div>
+
+      <div class="svc-card green">
+        <div class="svc-title"><mark>Pay-per-click<br>advertising</mark></div>
+        <svg class="svc-icon" viewBox="0 0 150 110" fill="none" stroke="#191A23" stroke-width="1.5">
+          <rect x="60" y="30" width="70" height="50" rx="4"/>
+          <circle cx="66" cy="38" r="1.6" fill="#191A23"/><circle cx="72" cy="38" r="1.6" fill="#191A23"/><circle cx="78" cy="38" r="1.6" fill="#191A23"/>
+          <path d="M70 70 L95 50" stroke-width="2"/><path d="M70 70l8-2-2 9z" fill="#191A23"/>
+          <path d="M20 85q15-10 30 0" />
+        </svg>
+        <a href="#" class="pill-link"><span class="arrow-badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M6 18L18 6M9 6h9v9"/></svg></span>Learn more</a>
+      </div>
+
+      <div class="svc-card dark">
+        <div class="svc-title"><mark>Social Media<br>Marketing</mark></div>
+        <svg class="svc-icon" viewBox="0 0 150 110" fill="none" stroke="#fff" stroke-width="1.5">
+          <rect x="55" y="25" width="75" height="55" rx="6"/>
+          <circle cx="68" cy="37" r="1.6" fill="#fff"/><circle cx="76" cy="37" r="1.6" fill="#fff"/><circle cx="84" cy="37" r="1.6" fill="#fff"/>
+          <path d="M80 58c3-4 10-4 13 0 3 4-3 10-6.5 12-3.5-2-9.5-8-6.5-12Z" fill="#B9FF66" stroke="none"/>
+        </svg>
+        <a href="#" class="pill-link" style="color:#fff"><span class="arrow-badge" style="background:#B9FF66"><svg viewBox="0 0 24 24" fill="none" stroke="#191A23" stroke-width="2.4"><path d="M6 18L18 6M9 6h9v9"/></svg></span>Learn more</a>
+      </div>
+
+      <div class="svc-card light">
+        <div class="svc-title"><mark>Email<br>Marketing</mark></div>
+        <svg class="svc-icon" viewBox="0 0 150 110" fill="none" stroke="#191A23" stroke-width="1.5">
+          <rect x="65" y="35" width="55" height="38" rx="4"/>
+          <path d="M65 37l27 20 28-20"/>
+          <path d="M30 70l15-4-4 15z" fill="#191A23" stroke="none"/>
+          <path d="M20 40q10-3 18 3" />
+        </svg>
+        <a href="#" class="pill-link"><span class="arrow-badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M6 18L18 6M9 6h9v9"/></svg></span>Learn more</a>
+      </div>
+
+      <div class="svc-card green">
+        <div class="svc-title"><mark>Content<br>Creation</mark></div>
+        <svg class="svc-icon" viewBox="0 0 150 110" fill="none" stroke="#191A23" stroke-width="1.5">
+          <rect x="55" y="25" width="45" height="58" rx="4"/>
+          <line x1="63" y1="38" x2="92" y2="38"/><line x1="63" y1="47" x2="92" y2="47"/><line x1="63" y1="56" x2="80" y2="56"/>
+          <rect x="95" y="45" width="30" height="40" rx="4" fill="#fff"/>
+        </svg>
+        <a href="#" class="pill-link"><span class="arrow-badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M6 18L18 6M9 6h9v9"/></svg></span>Learn more</a>
+      </div>
+
+      <div class="svc-card dark">
+        <div class="svc-title"><mark>Analytics and<br>Tracking</mark></div>
+        <svg class="svc-icon" viewBox="0 0 150 110" fill="none" stroke="#fff" stroke-width="1.5">
+          <rect x="55" y="30" width="70" height="50" rx="4"/>
+          <rect x="65" y="55" width="8" height="18" fill="#B9FF66" stroke="none"/>
+          <rect x="78" y="45" width="8" height="28" fill="#B9FF66" stroke="none"/>
+          <rect x="91" y="38" width="8" height="35" fill="#B9FF66" stroke="none"/>
+          <rect x="104" y="50" width="8" height="23" fill="#B9FF66" stroke="none"/>
+        </svg>
+        <a href="#" class="pill-link" style="color:#fff"><span class="arrow-badge" style="background:#B9FF66"><svg viewBox="0 0 24 24" fill="none" stroke="#191A23" stroke-width="2.4"><path d="M6 18L18 6M9 6h9v9"/></svg></span>Learn more</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section>
+  <div class="container">
+    <div class="cta">
+      <div>
+        <h2>Let's make things happen</h2>
+        <p>Contact us today to learn more about how our marketing services can help your business grow and succeed online.</p>
+        <a href="#contact" class="btn" style="margin-top:22px">Get your free proposal</a>
+      </div>
+      <svg class="cta-deco" viewBox="0 0 150 150" fill="none">
+        <circle cx="90" cy="60" r="35" fill="#191A23"/>
+        <circle cx="70" cy="95" r="18" fill="#B9FF66"/>
+        <path d="M40 40 l10 22 22 10-22 10-10 22-10-22-22-10 22-10Z" fill="#191A23"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STUDIES ============ -->
+<section id="cases">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Case Studies</span>
+      <p>Explore Real-Life Examples of Our Proven Digital Marketing Success through Our Case Studies</p>
+    </div>
+    <div class="case-panel">
+      <div class="case-col">
+        <p>For a local restaurant, we implemented a targeted PPC campaign that resulted in a 50% increase in website traffic and a 25% increase in sales.</p>
+        <a href="#">Learn more <span>↗</span></a>
+      </div>
+      <div class="case-col">
+        <p>For a B2B software company, we developed an SEO strategy that resulted in a first page ranking for key keywords and a 200% increase in organic traffic.</p>
+        <a href="#">Learn more <span>↗</span></a>
+      </div>
+      <div class="case-col">
+        <p>For a national retail chain, we created a social media marketing campaign that increased followers by 25% and generated a 20% increase in online sales.</p>
+        <a href="#">Learn more <span>↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Our Working Process</span>
+      <p>Step-by-Step Guide to Achieving Your Business Goals</p>
+    </div>
+    <div id="accordion">
+      <div class="acc-item open" data-i="0">
+        <div class="acc-head">
+          <span class="acc-num">01</span>
+          <span class="acc-title">Consultation</span>
+          <span class="acc-toggle">−</span>
+        </div>
+        <div class="acc-body"><p>During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements.</p></div>
+      </div>
+      <div class="acc-item" data-i="1">
+        <div class="acc-head">
+          <span class="acc-num">02</span>
+          <span class="acc-title">Research and Strategy Development</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><p>We dive into market research and competitor analysis to craft a data-driven strategy tailored to your goals, audience and budget.</p></div>
+      </div>
+      <div class="acc-item" data-i="2">
+        <div class="acc-head">
+          <span class="acc-num">03</span>
+          <span class="acc-title">Implementation</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><p>Our team puts the strategy into action across the chosen channels, with clear milestones and timelines agreed with you up front.</p></div>
+      </div>
+      <div class="acc-item" data-i="3">
+        <div class="acc-head">
+          <span class="acc-num">04</span>
+          <span class="acc-title">Monitoring and Optimization</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><p>We continuously track performance against KPIs and optimize campaigns in real time to improve results and spend efficiency.</p></div>
+      </div>
+      <div class="acc-item" data-i="4">
+        <div class="acc-head">
+          <span class="acc-num">05</span>
+          <span class="acc-title">Reporting and Communication</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><p>You'll receive regular, transparent reports along with a dedicated point of contact for any questions throughout the engagement.</p></div>
+      </div>
+      <div class="acc-item" data-i="5">
+        <div class="acc-head">
+          <span class="acc-num">06</span>
+          <span class="acc-title">Continual Improvement</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><p>We review results against goals on a regular cadence and evolve the strategy so performance keeps improving over time.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section id="team">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Team</span>
+      <p>Meet the skilled and experienced team behind our successful digital marketing strategies</p>
+    </div>
+
+    <div class="team-grid" id="teamGrid"></div>
+
+    <div class="team-foot"><a href="#" class="btn">See all team</a></div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Testimonials</span>
+      <p>Hear from Our Satisfied Clients: Read Our Testimonials to Learn More about Our Digital Marketing Services</p>
+    </div>
+
+    <div class="testi-wrap">
+      <div class="testi-track" id="testiTrack"></div>
+      <div class="testi-controls">
+        <button class="testi-arrow" id="testiPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <div class="testi-dots" id="testiDots"></div>
+        <button class="testi-arrow" id="testiNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Contact Us</span>
+      <p>Connect with Us: Let's Discuss Your Digital Marketing Needs</p>
+    </div>
+
+    <div class="contact-panel">
+      <form onsubmit="event.preventDefault();alert('Thanks! This form is a front-end demo.')">
+        <div class="radio-row">
+          <label><input type="radio" name="reason" checked> Say Hi</label>
+          <label><input type="radio" name="reason"> Get a Quote</label>
+        </div>
+        <div class="field"><label>Name</label><input type="text" placeholder="Name" required></div>
+        <div class="field"><label>Email*</label><input type="email" placeholder="Email" required></div>
+        <div class="field"><label>Message*</label><textarea placeholder="Message" required></textarea></div>
+        <button class="btn" type="submit" style="width:100%">Send Message</button>
+      </form>
+      <div class="contact-deco">
+        <svg viewBox="0 0 260 260" width="100%" style="max-width:280px">
+          <path d="M150 20 l20 55 55 20 -55 20 -20 55 -20-55-55-20 55-20Z" fill="#191A23"/>
+          <path d="M90 150 l10 28 28 10-28 10-10 28-10-28-28-10 28-10Z" fill="#B9FF66"/>
+          <g stroke="#9a9a9a" stroke-width="1">
+            <line x1="150" y1="20" x2="250" y2="-10"/><line x1="160" y1="30" x2="255" y2="10"/>
+            <line x1="170" y1="40" x2="255" y2="35"/><line x1="178" y1="55" x2="255" y2="60"/>
+            <line x1="182" y1="70" x2="250" y2="85"/><line x1="180" y1="85" x2="245" y2="105"/>
+            <line x1="170" y1="95" x2="230" y2="125"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="top-row">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 L15 9 L22 12 L15 15 L12 22 L9 15 L2 12 L9 9 Z" fill="#fff"/></svg>
+      Positivus
+    </div>
+    <nav>
+      <a href="#">About us</a>
+      <a href="#services">Services</a>
+      <a href="#cases">Use Cases</a>
+      <a href="#">Pricing</a>
+      <a href="#">Blog</a>
+    </nav>
+    <div class="soc">
+      <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.82-2 3.75-2 4 0 4.73 2.6 4.73 6v6.3h-4v-5.6c0-1.33-.02-3-1.84-3-1.85 0-2.14 1.44-2.14 2.93V21H9z"/></svg></a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V7c0-1 .7-1.5 1.5-1.5H17V2.3C16.6 2.2 15.3 2 13.9 2 11 2 9 3.8 9 7.2V9H6v4h3v9h4v-9h3.1l.6-4H13V9Z"/></svg></a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.3-1.5.5-2.3.7.8-.5 1.4-1.3 1.7-2.3-.8.5-1.7.8-2.6 1A4.1 4.1 0 0 0 11.5 9c0 .3 0 .6.1.9C8 9.7 5 8 3 5.4c-.3.6-.5 1.3-.5 2a4.1 4.1 0 0 0 1.8 3.4c-.7 0-1.3-.2-1.9-.5v.1c0 2 1.4 3.6 3.3 4a4.2 4.2 0 0 1-1.9.1 4.1 4.1 0 0 0 3.8 2.9A8.2 8.2 0 0 1 2 19.5 11.6 11.6 0 0 0 8.3 21c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2.1Z"/></svg></a>
+    </div>
+  </div>
+  <div class="foot-mid">
+    <div>
+      <span class="contact-tag">Contact us:</span>
+      <p>Email: info@positivus.com</p>
+      <p>Phone: 555-567-8901</p>
+      <p>Address: 1234 Main St<br>Moonstone City, Stardust State 12345</p>
+    </div>
+    <div class="newsletter">
+      <input type="email" placeholder="Email">
+      <button>Subscribe to news</button>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2024 Positivus. All Rights Reserved.</span>
+    <a href="#">Privacy Policy</a>
+  </div>
+</footer>
+
+<script>
+/* ---------- accordion ---------- */
+document.querySelectorAll('.acc-item').forEach(item=>{
+  item.querySelector('.acc-head').addEventListener('click',()=>{
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.acc-toggle').textContent='+';
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      item.querySelector('.acc-toggle').textContent='−';
+    }
+  });
+});
+
+/* ---------- team ---------- */
+const team = [
+  {name:'John Smith',role:'CEO and Founder',bio:'10+ years of experience in digital marketing. Expertise in SEO, PPC, and content strategy',letter:'JS'},
+  {name:'Jane Doe',role:'Director of Operations',bio:'7+ years of experience in project management and team leadership. Strong organizational and communication skills',letter:'JD'},
+  {name:'Michael Brown',role:'Senior SEO Specialist',bio:'5+ years of experience in SEO and content creation. Proficient in keyword research and on-page optimization',letter:'MB'},
+  {name:'Emily Johnson',role:'PPC Manager',bio:'3+ years of experience in paid search advertising. Skilled in campaign management and performance analysis',letter:'EJ'},
+  {name:'Brian Williams',role:'Social Media Specialist',bio:'4+ years of experience in social media marketing. Proficient in creating and scheduling content, analyzing metrics, and building engagement',letter:'BW'},
+  {name:'Sarah Kim',role:'Content Creator',bio:'2+ years of experience in writing and editing. Skilled in creating compelling, SEO-optimized content for various industries',letter:'SK'}
+];
+document.getElementById('teamGrid').innerHTML = team.map(m=>`
+  <div class="team-card">
+    <span class="li-badge">in</span>
+    <div class="team-top">
+      <div class="avatar-wrap">
+        <svg class="avatar-petal" viewBox="0 0 70 70"><path d="M35 5c11 0 15 9 15 17 8 0 17 4 17 13s-9 13-17 13c0 8-4 17-15 17s-15-9-15-17c-8 0-17-4-17-13s9-13 17-13C20 14 24 5 35 5Z" fill="#B9FF66"/></svg>
+        <span class="avatar-letter">${m.letter}</span>
+      </div>
+      <div>
+        <div class="team-name">${m.name}</div>
+        <div class="team-role">${m.role}</div>
+      </div>
+    </div>
+    <div class="team-bio">${m.bio}</div>
+  </div>
+`).join('');
+
+/* ---------- testimonials ---------- */
+const testis = [
+  {quote:'We have been working with Positivus for the past year and have seen a significant increase in website traffic and leads. The team is professional, responsive, and genuinely invested in our success.',name:'John Smith',role:'Marketing Director at XYZ Corp'},
+  {quote:'Positivus helped us turn a scattered marketing plan into a clear strategy. Our organic traffic has grown steadily, and we now understand exactly what is driving results.',name:'Sarah Chen',role:'Founder at Bloom & Wildflower'},
+  {quote:'The paid campaign they built brought in more qualified enquiries in the first few months than we had seen in the previous year. Communication has been excellent throughout.',name:'Marcus Rivera',role:'Sales Director at Northstar Systems'},
+  {quote:'Their social media team understood our audience straight away. Engagement is up, our brand feels more consistent, and the content calendar has made planning much easier.',name:'Priya Patel',role:'Brand Manager at Fresh Table'},
+  {quote:'From the initial audit to monthly reporting, everything has been thoughtful and transparent. We have improved conversions without losing the personal feel of our business.',name:'Olivia Brooks',role:'Owner at Brooks & Co.'}
+];
+
+const track = document.getElementById('testiTrack');
+const dotsWrap = document.getElementById('testiDots');
+track.innerHTML = testis.map(t=>`
+  <div class="testi-card">
+    <p>"${t.quote}"</p>
+    <div class="testi-name">${t.name}</div>
+    <div class="testi-role">${t.role}</div>
+  </div>
+`).join('');
+track.append(track.querySelector('.testi-card').cloneNode(true));
+dotsWrap.innerHTML = testis.map(()=>'<span></span>').join('');
+
+let tIndex = 0;
+const cards = track.querySelectorAll('.testi-card');
+const dots = dotsWrap.querySelectorAll('span');
+
+function renderTesti(){
+  const cardWidth = cards[0].getBoundingClientRect().width + 28;
+  track.style.transform = `translateX(${-tIndex*cardWidth}px)`;
+  cards.forEach((c,i)=>c.classList.toggle('active', i===tIndex));
+  dots.forEach((d,i)=>d.classList.toggle('active', i===tIndex));
+}
+document.getElementById('testiNext').onclick=()=>{ tIndex=(tIndex+1)%testis.length; renderTesti(); };
+document.getElementById('testiPrev').onclick=()=>{ tIndex=(tIndex-1+testis.length)%testis.length; renderTesti(); };
+window.addEventListener('resize', renderTesti);
+renderTesti();
+</script>
+</body>
+</html>
